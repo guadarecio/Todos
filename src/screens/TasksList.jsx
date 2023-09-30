@@ -33,6 +33,33 @@ const TasksList = () => {
                 marginBottom: 20,
                 marginTop: 20,
             }}>To-Do List</Text>
+            <Text style={{
+                marginBottom: 1,
+                fontSize: 18,
+                fontWeight: 'bold',
+                color: 'rgba(57, 148, 228, 0.8)',
+                textAlign: 'center',
+            }}>Do you want to add a new task?</Text>
+            <TouchableOpacity
+                style={{
+                    margin: 15,
+                    paddingHorizontal: 25,
+                    paddingVertical: 5,
+                    backgroundColor: 'rgba(221, 92, 178, 0.8)',
+                    borderRadius: 30,
+                }}
+                onPress={() => navigate('New Task')}
+            >
+                <Text style={{ color: "white", fontWeight: "bold" }} >New Task</Text>
+            </TouchableOpacity>
+            <Text style={{
+                marginTop: 30,
+                marginBottom: 15,
+                fontSize: 18,
+                fontWeight: 'bold',
+                color: 'rgba(57, 148, 228, 0.8)',
+                textAlign: 'center',
+            }}>The list of your tasks: </Text>
             <FlatList
                 data={taskDescription}
                 renderItem={({ item }) => (
@@ -63,25 +90,7 @@ const TasksList = () => {
                 )}
                 keyExtractor={item => item.id}
             />
-            <Text style={{
-                marginBottom: 1,
-                fontSize: 18,
-                fontWeight: 'bold',
-                color: 'rgba(57, 148, 228, 0.8)',
-                textAlign: 'center',
-            }}>Do you want to add a new task?</Text>
-            <TouchableOpacity
-                style={{
-                    margin: 15,
-                    paddingHorizontal: 25,
-                    paddingVertical: 5,
-                    backgroundColor: 'rgba(221, 92, 178, 0.8)',
-                    borderRadius: 30,
-                }}
-                onPress={() => navigate('New Task')}
-            >
-                <Text style={{ color: "white", fontWeight: "bold" }} >New Task</Text>
-            </TouchableOpacity>
+
         </SafeAreaView>
     );
 };

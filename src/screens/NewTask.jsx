@@ -21,6 +21,8 @@ const NewTask = () => {
       <TextInput
         style={{
           backgroundColor: 'rgba(57, 148, 228, 0.8)',
+          color: 'white',
+          fontSize: 20,
           padding: 60,
           marginBottom: 30,
           borderRadius: 30,
@@ -28,7 +30,6 @@ const NewTask = () => {
         onChangeText={(d) => setText(d)}
         value={text}
         placeholder='Write your task here'
-        clearButtonMode="always"
       />
 
       <TouchableOpacity
