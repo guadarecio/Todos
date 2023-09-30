@@ -3,12 +3,7 @@ import { View, Text, Button, TextInput } from 'react-native';
 import { TodosContext } from '../context/TodosContext';
 
 const NewTask = () => {
-
-  const {text, setText, setTaskDescription} = useContext(TodosContext);
-
-  const handleAddTask = () => {
-    setTaskDescription(text);
-  };
+  const { text, setText, handleAddTask } = useContext(TodosContext);
 
   return (
     <View>
@@ -18,6 +13,7 @@ const NewTask = () => {
         onChangeText={(d) => setText(d)}
         value={text}
         placeholder='Write your task here'
+        clearButtonMode="always"
       />
 
       <Button
