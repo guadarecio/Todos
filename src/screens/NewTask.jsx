@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import { View, Text, Button, TextInput } from 'react-native';
+import { TodosContext } from '../context/TodosContext';
 
 const NewTask = () => {
-  const [text, setText] = useState("");
-  const [taskDescription, setTaskDescription] = useState("");
-  
+
+  const {text, setText, setTaskDescription} = useContext(TodosContext);
 
   const handleAddTask = () => {
-    setTaskDescription(text); 
+    setTaskDescription(text);
   };
 
   return (
@@ -22,7 +22,7 @@ const NewTask = () => {
 
       <Button
         title="Add Task"
-        onPress={handleAddTask} 
+        onPress={handleAddTask}
       />
 
     </View>

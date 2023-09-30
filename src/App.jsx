@@ -1,14 +1,14 @@
 import React from 'react';
 import { View } from 'react-native';
 import StackNavigator from './navigation/StackNavigator';
-import { TodosContext } from './context/TodosContext';
+import {TodosProvider} from './context/TodosContext';
 
 const App = () => {
   return (
     <View style={{ flex: 1 }}>
-      <TodosContext.Provider value="dark">
+      <TodosProvider>
         <StackNavigator />
-      </TodosContext.Provider>
+      </TodosProvider>
     </View>
   );
 };
