@@ -7,7 +7,7 @@ const NewTask = () => {
   const { text, setText, handleAddTask } = useContext(TodosContext);
   const handleAddTaskWithValidation = () => {
     if (text.trim() === '') {
-      Alert.alert('Alert', 'You must fill out the task field.');
+      Alert.alert('Add task', 'You must fill out the task field.');
     } else {
       handleAddTask();
     }
