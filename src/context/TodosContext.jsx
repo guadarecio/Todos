@@ -17,10 +17,11 @@ export const TodosProvider = ({ children }) => {
     };
 
 
+
     return (
         <TodosContext.Provider value={{ text, setText, taskDescription, setTaskDescription, handleAddTask }}>
             {children}
         </TodosContext.Provider>
     );
-}
+};
 
