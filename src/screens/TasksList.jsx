@@ -33,26 +33,29 @@ const TasksList = () => {
                 <Text style={GlobalStyles.addTaskText}>New Task</Text>
             </TouchableOpacity>
             <Text style={GlobalStyles.subtitle}>The list of your tasks: </Text>
-            <FlatList
-                data={taskDescription}
-                renderItem={({ item }) => (
-                    <View style={GlobalStyles.flatListView}>
-                        <CheckBox
-                            style={{ flex: 1, padding: 10 }}
-                            onClick={() => handleToggleTask(item.id)}
-                            isChecked={item.isChecked}
-                            rightText={item.description}
-                            rightTextStyle={{ color: 'white', fontSize: 18 }}
-                            checkBoxColor="white"
-                            checkedCheckBoxColor="rgba(77, 82, 244, 0.8)"
-                        />
-                        <TouchableOpacity onPress={() => handleDeleteTask(item.description)}>
-                            <Text style={GlobalStyles.deleteButton}>Delete</Text>
-                        </TouchableOpacity>
-                    </View>
-                )}
-                keyExtractor={item => item.id}
-            />
+            {taskDescription.length === 0 ? (
+                <Text style={GlobalStyles.verificationText}>No tasks have been added</Text>
+            ) : (
+                <FlatList
+                    data={taskDescription}
+                    renderItem={({ item }) => (
+                        <View style={GlobalStyles.flatListView}>
+                            <CheckBox
+                                style={{ flex: 1, padding: 10 }}
+                                onClick={() => handleToggleTask(item.id)}
+                                isChecked={item.isChecked}
+                                rightText={item.description}
+                                rightTextStyle={{ color: 'white', fontSize: 18 }}
+                                checkBoxColor="white"
+                                checkedCheckBoxColor="rgba(77, 82, 244, 0.8)"
+                            />
+                            <TouchableOpacity onPress={() => handleDeleteTask(item.description)}>
+                                <Text style={GlobalStyles.deleteButton}>Delete</Text>
+                            </TouchableOpacity>
+                        </View>
+                    )}
+                    keyExtractor={item => item.id}
+                />)}
         </SafeAreaView>
     );
 };

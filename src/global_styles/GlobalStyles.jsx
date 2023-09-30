@@ -50,7 +50,7 @@ const GlobalStyles = StyleSheet.create({
     addTaskButton: {
         marginHorizontal: 95,
         paddingHorizontal: 45,
-        paddingVertical: 20,
+        paddingVertical: 10,
         backgroundColor: 'rgba(221, 92, 178, 0.8)',
         borderRadius: 30,
 
@@ -72,6 +72,11 @@ const GlobalStyles = StyleSheet.create({
         color: "white",
         fontWeight: "bold",
         fontSize: 18
+    },
+    verificationText: {
+        textAlign: 'center',
+        color: "gray",
+        marginTop: 50
     },
 
 
