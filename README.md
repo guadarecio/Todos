@@ -22,6 +22,8 @@ pod install
 
 ## Step 3: Ejecutar la aplicacion
 
+Asegurate de situarte en el directorio principal. Luego en la terminal ejecutar el comando:
+
 ### Para Android
 
 ```bash
