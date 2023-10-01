@@ -10,9 +10,17 @@ const Stack = createNativeStackNavigator();
 function App() {
     return (
         <NavigationContainer>
-            <Stack.Navigator initialRouteName="Tasks List">
-                <Stack.Screen name="Tasks List" component={TasksList} />
-                <Stack.Screen name="New Task" component={NewTask} />
+            <Stack.Navigator>
+                <Stack.Screen name="Tasks List" component={TasksList} options={{
+                    headerTitleStyle: {
+                        color: 'rgba(57, 148, 228, 0.8)',
+                    },
+                }} />
+                <Stack.Screen name="New Task" component={NewTask} options={{
+                    headerTitleStyle: {
+                        color: 'rgba(57, 148, 228, 0.8)',
+                    },
+                }} />
             </Stack.Navigator>
         </NavigationContainer>
     );
