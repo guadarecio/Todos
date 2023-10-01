@@ -1,6 +1,6 @@
 # Como ejecutar el proyecto
 
-> **Note**: Proyecto probado unicamente en simulador de android Pixel 3a y en el simulador de Iphone 13. Por cuestiones practicas damos por hecho que se ejecutara en una pc que tiene todo el ambiente de react native previamente configurado. [Ver aqui](https://reactnative.dev/docs/environment-setup)
+> **Note**: Proyecto probado unicamente en simulador de android Pixel 3a y en el simulador de Iphone 13. Por cuestiones practicas doy por hecho que se ejecutara en una pc que tiene todo el ambiente de react native previamente configurado. [Ver aqui](https://reactnative.dev/docs/environment-setup)
 
 ## Step 1: Descargar y extraer el archivo zip en una nueva carpeta
 
