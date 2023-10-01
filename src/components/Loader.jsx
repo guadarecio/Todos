@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { View, ActivityIndicator, StyleSheet } from 'react-native';
-import { TodosContext } from '../context/todosContext';
+import { TodosContext } from '../context/Context';
 
 export const Loader = () => {
   const { isLoading } = useContext(TodosContext);

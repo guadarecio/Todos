@@ -1,6 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
-import { TodosProvider } from './context/todosContext';
+
+import { TodosProvider } from './context/Context';
 import { Navigator } from './navigation/Navigator';
 import { Loader } from './components/Loader';
 

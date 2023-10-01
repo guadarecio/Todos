@@ -1,5 +1,7 @@
 import React, { createContext, useState } from 'react';
 import { Alert } from 'react-native';
+
+import { CONTEXT_COMPONENT as strings } from '../constants/strings';
 import { BASE_URL } from '../constants/constants';
 
 export const TodosContext = createContext();
@@ -19,13 +21,13 @@ export const TodosProvider = ({ children }) => {
         },
       });
       if (response.status !== 201) {
-        throw new Error('Error!');
+        throw new Error('Error');
       }
       setTasks([...tasks, newTask]);
       setIsLoading(false);
-      Alert.alert('Success', 'Task added successfully!');
+      Alert.alert(strings.successAlertTitle, strings.successAlertMessage);
     } catch (error) {
-      Alert.alert('Error', 'Error adding task!');
+      Alert.alert(strings.errorAlertTitle, strings.errorAlertMessage);
       setIsLoading(false);
     }
   };

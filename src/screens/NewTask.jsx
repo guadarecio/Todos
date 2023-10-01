@@ -4,7 +4,7 @@ import { View, TextInput, Image, SafeAreaView, Alert } from 'react-native';
 import { NEW_TASKS_SCREEN as strings } from '../constants/strings';
 import { IMAGE_URL } from '../constants/constants';
 import { globalStyles } from '../styles/globalStyles';
-import { TodosContext } from '../context/todosContext';
+import { TodosContext } from '../context/Context';
 import { BaseButton } from '../components/BaseButton';
 import { Title } from '../components/Title';
 import { Separator } from '../components/Separator';
@@ -15,7 +15,7 @@ export const NewTask = () => {
 
   const handleAddTask = () => {
     if (text === '') {
-      Alert.alert('Add task', 'You must fill out the task field.');
+      Alert.alert(strings.addTaskAlertTitle, strings.addTaskAlertMessage);
       return;
     }
     const newTask = {

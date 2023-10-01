@@ -8,9 +8,9 @@ import {
 } from 'react-native';
 import CheckBox from 'react-native-check-box';
 
-import { useNavigation } from '@react-navigation/native';
-import { TodosContext } from '../context/todosContext';
 import { TASKS_LIST_SCREEN as strings } from '../constants/strings';
+import { useNavigation } from '@react-navigation/native';
+import { TodosContext } from '../context/Context';
 import { globalStyles } from '../styles/globalStyles';
 import { Separator } from '../components/Separator';
 import { BaseButton } from '../components/BaseButton';
