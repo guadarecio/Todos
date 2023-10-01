@@ -1,50 +1,34 @@
 import React, { createContext, useState } from 'react';
+import { Alert } from 'react-native';
+import { BASE_URL } from '../constants/constants';
 
 export const TodosContext = createContext();
 
 export const TodosProvider = ({ children }) => {
+  const [tasks, setTasks] = useState([]);
 
-    const [text, setText] = useState("");
-    const [taskDescription, setTaskDescription] = useState("");
-    const handleAddTask = () => {
-        const newTask = {
-            id: new Date(),
-            description: text,
-        };
+  const onAddTask = async newTask => {
+    try {
+      const response = await fetch(BASE_URL, {
+        method: 'POST',
+        body: JSON.stringify(newTask),
+        headers: {
+          'Content-type': 'application/json; charset=UTF-8',
+        },
+      });
+      if (response.status !== 201) {
+        throw new Error('Error!');
+      }
+      setTasks([...tasks, newTask]);
+      Alert.alert('Success', 'Task added successfully!');
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-        setTaskDescription([...taskDescription, newTask]);
-        onAddTask(text);
-        setText('');
-    };
-
-    const onAddTask = async (description) => {
-        await fetch('http://jsonplaceholder.typicode.com/todos', {
-            method: 'POST',
-            body: JSON.stringify({
-                title: description,
-            }),
-            headers: {
-                'Content-type': 'application/json; charset=UTF-8',
-            },
-        })
-            .then((res) => {
-                console.log(res);
-                if (res.status !== 201) {
-                    return;
-                } else {
-                    return res.json();
-                }
-            })
-            .then((data) => {
-                setTaskDescription((taskDescription) => [...taskDescription, data]);
-            })
-            .catch((err) => console.log(err));
-    };
-
-    return (
-        <TodosContext.Provider value={{ text, setText, taskDescription, setTaskDescription, handleAddTask }}>
-            {children}
-        </TodosContext.Provider>
-    );
+  return (
+    <TodosContext.Provider value={{ tasks, setTasks, onAddTask }}>
+      {children}
+    </TodosContext.Provider>
+  );
 };
-

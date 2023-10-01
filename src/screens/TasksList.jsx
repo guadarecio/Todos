@@ -1,63 +1,79 @@
 import React, { useContext } from 'react';
-import { SafeAreaView, View, Text, FlatList, TouchableOpacity } from 'react-native';
+import {
+  SafeAreaView,
+  View,
+  Text,
+  FlatList,
+  TouchableOpacity,
+} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { TodosContext } from '../context/TodosContext';
-import GlobalStyles from '../global_styles/GlobalStyles';
 import CheckBox from 'react-native-check-box';
+import { TASKS_LIST_SCREEN as strings } from '../constants/strings';
+import { globalStyles } from '../styles/globalStyles';
+import BaseButton from '../components/BaseButton';
+import Title from '../components/Title';
 
 const TasksList = () => {
-    const { navigate } = useNavigation();
-    const { taskDescription, setTaskDescription } = useContext(TodosContext);
+  const { navigate } = useNavigation();
+  const { tasks, setTasks } = useContext(TodosContext);
 
-    const handleDeleteTask = (description) => {
-        const filterTask = taskDescription.filter((item) => item.description !== description);
-        setTaskDescription(filterTask);
-    };
-    const handleToggleTask = (taskId) => {
-        setTaskDescription((prevTasks) => prevTasks.map((task) => {
-            if (task.id === taskId) {
-                return { ...task, isChecked: !task.isChecked };
-            }
-            return task;
-        }));
-    };
-
-    return (
-        <SafeAreaView style={{ flex: 1, backgroundColor: "white" }}>
-            <Text style={GlobalStyles.titleAdd}>To-Do List</Text>
-            <Text style={GlobalStyles.subtitle}>Do you want to add a new task?</Text>
-            <TouchableOpacity
-                style={GlobalStyles.addTaskButton}
-                onPress={() => navigate('New Task')}
-            >
-                <Text style={GlobalStyles.addTaskText}>New Task</Text>
-            </TouchableOpacity>
-            <Text style={GlobalStyles.subtitle}>The list of your tasks: </Text>
-            {taskDescription.length === 0 ? (
-                <Text style={GlobalStyles.verificationText}>No tasks have been added</Text>
-            ) : (
-                <FlatList
-                    data={taskDescription}
-                    renderItem={({ item }) => (
-                        <View style={GlobalStyles.flatListView}>
-                            <CheckBox
-                                style={{ flex: 1, padding: 10 }}
-                                onClick={() => handleToggleTask(item.id)}
-                                isChecked={item.isChecked}
-                                rightText={item.description}
-                                rightTextStyle={{ color: 'white', fontSize: 18 }}
-                                checkBoxColor="white"
-                                checkedCheckBoxColor="rgba(77, 82, 244, 0.8)"
-                            />
-                            <TouchableOpacity onPress={() => handleDeleteTask(item.description)}>
-                                <Text style={GlobalStyles.deleteButton}>Delete</Text>
-                            </TouchableOpacity>
-                        </View>
-                    )}
-                    keyExtractor={item => item.id}
-                />)}
-        </SafeAreaView>
+  const handleDeleteTask = id => {
+    const filteredTask = tasks.filter(item => item.id !== id);
+    setTasks(filteredTask);
+  };
+  const handleToggleTask = taskId => {
+    setTasks(prevTasks =>
+      prevTasks.map(task => {
+        if (task.id === taskId) {
+          return { ...task, done: !task.done };
+        }
+        return task;
+      }),
     );
+  };
+
+  return (
+    <SafeAreaView style={globalStyles.container}>
+      <Title strings={strings.title} />
+      <Text style={globalStyles.subtitle}>{strings.subtitle}</Text>
+      <BaseButton
+        onPress={() => navigate('New Task')}
+        strings={strings.addTaskText}
+      />
+      <Text style={globalStyles.subtitle}>{strings.subtitleListOfTasks}</Text>
+      {tasks.length === 0 ? (
+        <Text style={globalStyles.verificationText}>
+          {strings.verificationText}
+        </Text>
+      ) : (
+        <View style={{ paddingHorizontal: 15 }}>
+          <FlatList
+            data={tasks}
+            renderItem={({ item }) => (
+              <View style={globalStyles.flatListView}>
+                <CheckBox
+                  style={{ flex: 1, padding: 10 }}
+                  onClick={() => handleToggleTask(item.id)}
+                  isChecked={item.done}
+                  rightText={item.title}
+                  rightTextStyle={{ color: 'white', fontSize: 18 }}
+                  checkBoxColor="white"
+                  checkedCheckBoxColor="rgba(77, 82, 244, 0.8)"
+                />
+                <TouchableOpacity onPress={() => handleDeleteTask(item.id)}>
+                  <Text style={globalStyles.deleteButton}>
+                    {strings.deleteButton}
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            )}
+            keyExtractor={item => item.id}
+          />
+        </View>
+      )}
+    </SafeAreaView>
+  );
 };
 
 export default TasksList;

@@ -1,36 +1,49 @@
-import React, { useContext } from 'react';
-import { View, Text, TextInput, TouchableOpacity, Image, SafeAreaView, Alert } from 'react-native';
+import React, { useState, useContext, useId } from 'react';
+import { View, TextInput, Image, SafeAreaView, Alert } from 'react-native';
 import { TodosContext } from '../context/TodosContext';
-import GlobalStyles from '../global_styles/GlobalStyles';
+import { NEW_TASKS_SCREEN as strings } from '../constants/strings';
+import { IMAGE_URL } from '../constants/constants';
+import { globalStyles } from '../styles/globalStyles';
+import BaseButton from '../components/BaseButton';
+import Title from '../components/Title';
 
 const NewTask = () => {
-  const { text, setText, handleAddTask } = useContext(TodosContext);
-  const handleAddTaskWithValidation = () => {
-    if (text.trim() === '') {
+  const taskId = useId();
+  const [text, setText] = useState('');
+  const { onAddTask } = useContext(TodosContext);
+
+  const handleAddTask = () => {
+    if (text === '') {
       Alert.alert('Add task', 'You must fill out the task field.');
-    } else {
-      handleAddTask();
+      return;
     }
+
+    const newTask = {
+      id: taskId,
+      title: text,
+      body: 'bar',
+      done: false,
+      userId: 1,
+    };
+
+    setText('');
+    onAddTask(newTask);
   };
+
   return (
-    <SafeAreaView style={GlobalStyles.container}>
-      <Text style={GlobalStyles.titleAdd}>Add your new task here!</Text>
-      <View style={GlobalStyles.textInputView}>
+    <SafeAreaView style={globalStyles.container}>
+      <Title strings={strings.titleAdd} />
+      <View style={globalStyles.textInputView}>
         <TextInput
-          style={GlobalStyles.textInput}
-          onChangeText={(d) => setText(d)}
+          style={globalStyles.textInput}
+          onChangeText={setText}
           value={text}
-          placeholder='Write your task here'
+          placeholder="Write your task here"
         />
       </View>
-      <TouchableOpacity style={GlobalStyles.addTaskButton} onPress={handleAddTaskWithValidation} >
-        <Text style={GlobalStyles.addTaskText}>Add Task</Text>
-      </TouchableOpacity>
-      <View style={GlobalStyles.imageView}>
-        <Image
-          style={GlobalStyles.image}
-          source={{ uri: 'https://play-lh.googleusercontent.com/VPqK75BwKMtTDFF6UQS6E3GYdYqzvZfddDxoKRH-DSlXIcYLN_EeSy5OXKx0bhBTtLUU' }}
-        />
+      <BaseButton onPress={handleAddTask} strings={strings.addTaskText} />
+      <View style={globalStyles.imageView}>
+        <Image style={globalStyles.image} source={{ uri: IMAGE_URL }} />
       </View>
     </SafeAreaView>
   );
