@@ -8,20 +8,15 @@ export const globalStyles = StyleSheet.create({
   },
   titleAdd: {
     textAlign: 'center',
-    padding: 5,
-    marginTop: 30,
-    marginBottom: 20,
+    padding: 15,
     fontSize: 50,
     fontWeight: 'bold',
     color: 'rgba(77, 82, 244, 0.8)',
   },
   subtitle: {
-    marginTop: 50,
-    marginBottom: 20,
     fontSize: 20,
     fontWeight: 'bold',
     color: 'rgba(57, 148, 228, 0.8)',
-    textAlign: 'center',
   },
   flatListView: {
     width: '100%',
@@ -43,7 +38,6 @@ export const globalStyles = StyleSheet.create({
     color: 'white',
     fontSize: 20,
     padding: 60,
-    marginBottom: 30,
     borderRadius: 30,
   },
   addTaskButton: {
@@ -59,9 +53,6 @@ export const globalStyles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
     fontSize: 18,
-  },
-  imageView: {
-    marginTop: 50,
   },
   image: {
     width: 200,

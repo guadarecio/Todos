@@ -1,13 +1,7 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { Text } from 'react-native';
 import { globalStyles } from '../styles/globalStyles';
 
-const Title = ({ strings }) => {
-  return (
-    <View>
-      <Text style={globalStyles.titleAdd}>{strings}</Text>
-    </View>
-  );
+export const Title = ({ strings }) => {
+  return <Text style={globalStyles.titleAdd}>{strings}</Text>;
 };
-
-export default Title;

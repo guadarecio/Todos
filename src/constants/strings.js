@@ -10,4 +10,5 @@ export const TASKS_LIST_SCREEN = {
 export const NEW_TASKS_SCREEN = {
   titleAdd: 'Add your new task here!',
   addTaskText: 'Add Task',
+  placeholder: 'Place your new task here',
 };

@@ -1,12 +1,14 @@
 import React from 'react';
 import { View } from 'react-native';
-import { TodosProvider } from './context/TodosContext';
+import { TodosProvider } from './context/todosContext';
 import { Navigator } from './navigation/Navigator';
+import { Loader } from './components/Loader';
 
 const App = () => {
   return (
     <View style={{ flex: 1 }}>
       <TodosProvider>
+        <Loader />
         <Navigator />
       </TodosProvider>
     </View>

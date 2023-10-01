@@ -6,8 +6,10 @@ export const TodosContext = createContext();
 
 export const TodosProvider = ({ children }) => {
   const [tasks, setTasks] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const onAddTask = async newTask => {
+    setIsLoading(true);
     try {
       const response = await fetch(BASE_URL, {
         method: 'POST',
@@ -20,14 +22,16 @@ export const TodosProvider = ({ children }) => {
         throw new Error('Error!');
       }
       setTasks([...tasks, newTask]);
+      setIsLoading(false);
       Alert.alert('Success', 'Task added successfully!');
     } catch (error) {
-      console.log(error);
+      Alert.alert('Error', 'Error adding task!');
+      setIsLoading(false);
     }
   };
 
   return (
-    <TodosContext.Provider value={{ tasks, setTasks, onAddTask }}>
+    <TodosContext.Provider value={{ tasks, setTasks, onAddTask, isLoading }}>
       {children}
     </TodosContext.Provider>
   );

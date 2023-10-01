@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import TasksList from '../screens/TasksList';
-import NewTask from '../screens/NewTask';
+import { TasksList } from '../screens/TasksList';
+import { NewTask } from '../screens/NewTask';
 
 const Stack = createNativeStackNavigator();
 

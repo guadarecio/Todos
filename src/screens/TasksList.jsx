@@ -6,15 +6,17 @@ import {
   FlatList,
   TouchableOpacity,
 } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import { TodosContext } from '../context/TodosContext';
 import CheckBox from 'react-native-check-box';
+
+import { useNavigation } from '@react-navigation/native';
+import { TodosContext } from '../context/todosContext';
 import { TASKS_LIST_SCREEN as strings } from '../constants/strings';
 import { globalStyles } from '../styles/globalStyles';
-import BaseButton from '../components/BaseButton';
-import Title from '../components/Title';
+import { Separator } from '../components/Separator';
+import { BaseButton } from '../components/BaseButton';
+import { Title } from '../components/Title';
 
-const TasksList = () => {
+export const TasksList = () => {
   const { navigate } = useNavigation();
   const { tasks, setTasks } = useContext(TodosContext);
 
@@ -36,18 +38,22 @@ const TasksList = () => {
   return (
     <SafeAreaView style={globalStyles.container}>
       <Title strings={strings.title} />
+      <Separator />
       <Text style={globalStyles.subtitle}>{strings.subtitle}</Text>
+      <Separator size={10} />
       <BaseButton
         onPress={() => navigate('New Task')}
         strings={strings.addTaskText}
       />
+      <Separator />
       <Text style={globalStyles.subtitle}>{strings.subtitleListOfTasks}</Text>
       {tasks.length === 0 ? (
         <Text style={globalStyles.verificationText}>
           {strings.verificationText}
         </Text>
       ) : (
-        <View style={{ paddingHorizontal: 15 }}>
+        <View style={{ paddingHorizontal: 15, flex: 1 }}>
+          <Separator />
           <FlatList
             data={tasks}
             renderItem={({ item }) => (
@@ -69,11 +75,10 @@ const TasksList = () => {
               </View>
             )}
             keyExtractor={item => item.id}
+            showsVerticalScrollIndicator={false}
           />
         </View>
       )}
     </SafeAreaView>
   );
 };
-
-export default TasksList;
