@@ -8,6 +8,7 @@ import { TodosContext } from '../context/Context';
 import { BaseButton } from '../components/BaseButton';
 import { Title } from '../components/Title';
 import { Separator } from '../components/Separator';
+import { Loader } from '../components/Loader';
 
 export const NewTask = () => {
   const { onAddTask } = useContext(TodosContext);
@@ -31,6 +32,7 @@ export const NewTask = () => {
 
   return (
     <SafeAreaView style={globalStyles.container}>
+      <Loader />
       <Title strings={strings.titleAdd} />
       <View style={globalStyles.textInputView}>
         <TextInput
